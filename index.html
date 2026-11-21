@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#091327">
+  <meta name="description" content="AccessOTP is an accessibility-first banking authentication concept. Explore a simulated, bank-authorized OTP flow designed for visually impaired users.">
+  <title>Accessible banking without manual OTP entry | AccessOTP</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="config.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body class="page-home">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header" id="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="AccessOTP home">
+        <span class="brand-mark" aria-hidden="true"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <span>Access<span class="brand-accent">OTP</span></span>
+      </a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      
+        <a href="index.html" aria-current="page">Home</a>
+      
+        <a href="about.html" >About Us</a>
+      
+        <a href="services.html" >Services</a>
+      
+        <a href="features.html" >Features</a>
+      
+        <a href="demo.html" >Demo</a>
+      
+        <a href="contact.html" >Contact</a>
+      
+      </nav>
+    </div>
+  </header>
+  <main id="main-content">
+  
+<section class="hero-section section-glow">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <span class="eyebrow"><span class="eyebrow-dot"></span> ACCESSIBILITY-FIRST BANKING AUTHENTICATION</span>
+      <h1>Banking access.<br><span class="gradient-text">Without manual OTP entry.</span></h1>
+      <p class="lead">AccessOTP explores how an <strong>authorized banking integration</strong> could make sign-in verification easier for people with visual impairments — without switching to SMS or typing a code.</p>
+      <div class="button-group"><a class="btn btn-primary" href="demo.html">Try the interactive demo <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a><a class="btn btn-outline" href="features.html">Explore the concept</a></div>
+      <div class="hero-disclaimer"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg> Proof-of-concept · No real bank connection</div>
+    </div>
+    <div class="hero-visual" aria-label="Illustration of a fictional bank securely requesting a verification result from AccessOTP">
+      <div class="visual-orb"></div>
+      <div class="app-window bank-window">
+        <div class="window-title"><span class="window-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-6 9 6M4 10h16M6 10v8M10 10v8M14 10v8M18 10v8M3 21h18M2 18h20"/></svg></span> <span>DemoBank <small>FICTIONAL BANK</small></span><span class="window-dots">•••</span></div>
+        <div class="mini-label">SECURE SIGN-IN</div>
+        <div class="mini-user"><span class="round-avatar"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span>Welcome back<small>Verification in progress</small></span></div>
+        <div class="mini-pulse"><span class="pulse-ring"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l3-3A5 5 0 0 0 13 2.9l-1.7 1.7M14 11a5 5 0 0 0-7.1 0l-3 3A5 5 0 1 0 11 21.1l1.7-1.7"/></svg></span><span>Verification request sent to AccessOTP<small>No SMS or code entry needed</small></span></div>
+        <div class="mini-success"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg> Verification complete</div>
+      </div>
+      <div class="floating-token"><span class="floating-token-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span><span><b>AccessOTP</b><small>Simulated authorization</small></span><span class="check-pill"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></span></div>
+    </div>
+  </div>
+</section>
+<section class="section section-compact">
+  <div class="container">
+    <div class="section-heading center"><span class="eyebrow">THE CHALLENGE</span><h2>Security shouldn't depend on reading a code.</h2><p>Traditional OTP journeys can introduce extra steps for people using assistive technology.</p></div>
+    <div class="cards three">
+      <article class="card"> <div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.88 5.09A10.5 10.5 0 0 1 12 4.9c5.2 0 9 7.1 9 7.1a14.4 14.4 0 0 1-3 3.8"/><path d="M6.4 6.4A14.5 14.5 0 0 0 3 12s3.8 7.1 9 7.1a10.7 10.7 0 0 0 4.2-.9"/><path d="m3 3 18 18"/></svg></div><h3>SMS-dependent steps</h3><p>Moving between a banking app and a message can interrupt the sign-in flow.</p></article>
+      <article class="card"> <div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></div><h3>Manual entry</h3><p>Locating, remembering and entering a short-lived code can be difficult for some users.</p></article>
+      <article class="card"> <div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M4 8h16M12 6v15M7 21l5-7 5 7"/></svg></div><h3>Accessibility gaps</h3><p>Authentication works best when accessibility is considered from the beginning.</p></article>
+    </div>
+  </div>
+</section>
+<section class="section alt-section">
+  <div class="container split">
+    <div class="section-heading"><span class="eyebrow">HOW THE CONCEPT WORKS</span><h2>One flow. Fewer barriers.</h2><p>Our demo shows the <em>intended interaction</em> between a fictional bank and AccessOTP. A real implementation would require formal bank support, user consent, and security review.</p><a class="text-link" href="demo.html">See the simulation <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div>
+    <ol class="process-list">
+      <li><span class="step-num">01</span><div><h3>Start a bank sign-in</h3><p>The user initiates authentication inside the fictional bank app.</p></div></li>
+      <li><span class="step-num">02</span><div><h3>Authorized verification request</h3><p>A simulated secure integration sends the request to AccessOTP without an SMS step.</p></div></li>
+      <li><span class="step-num">03</span><div><h3>Automatic completion</h3><p>The demo bank receives a simulated result and completes sign-in without manual OTP entry.</p></div></li>
+    </ol>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="section-heading center"><span class="eyebrow">BUILT AROUND PEOPLE</span><h2>Why we're building AccessOTP</h2><p>Making digital security usable, inclusive and more independent.</p></div>
+    <div class="cards three">
+      <article class="card card-feature"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M4 8h16M12 6v15M7 21l5-7 5 7"/></svg></div><h3>Accessibility from day one</h3><p>Considering screen readers, clear language, keyboard access, and accessible confirmation patterns.</p></article>
+      <article class="card card-feature"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Permission-led by design</h3><p>Aiming for bank-approved integration rather than accessing private messages or bypassing controls.</p></article>
+      <article class="card card-feature"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2ZM19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8L19 17Z"/></svg></div><h3>Less friction</h3><p>Demonstrating an authentication journey that doesn't require typing a one-time code.</p></article>
+    </div>
+  </div>
+</section>
+<section class="section"><div class="container"><div class="cta-banner"><div><span class="eyebrow">EXPLORE THE PROTOTYPE</span><h2>See accessibility-first authentication in action.</h2><p>Experience the simulated DemoBank → AccessOTP → DemoBank journey.</p></div><a href="demo.html" class="btn btn-primary">Launch demo <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div></div></section>
+
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <a class="brand brand-footer" href="index.html"><span class="brand-mark"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span> Access<span class="brand-accent">OTP</span></a>
+        <p>Accessible authentication, thoughtfully reimagined.</p>
+      </div>
+      <div class="footer-nav"><a href="about.html">About</a><a href="features.html">Features</a><a href="demo.html">Demo</a><a href="contact.html">Contact</a></div>
+      <div class="footer-note">Concept prototype · Fictional banking environment<br>© 2026 AccessOTP</div>
+    </div>
+  </footer>
+</body>
+</html>

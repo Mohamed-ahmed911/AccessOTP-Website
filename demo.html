@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#091327">
+  <meta name="description" content="Try an interactive simulated DemoBank to AccessOTP sign-in flow. Demonstration only — no real bank connection or OTP verification.">
+  <title>Interactive bank authentication demo | AccessOTP</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="config.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body class="page-demo">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header" id="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="AccessOTP home">
+        <span class="brand-mark" aria-hidden="true"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <span>Access<span class="brand-accent">OTP</span></span>
+      </a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      
+        <a href="index.html" >Home</a>
+      
+        <a href="about.html" >About Us</a>
+      
+        <a href="services.html" >Services</a>
+      
+        <a href="features.html" >Features</a>
+      
+        <a href="demo.html" aria-current="page">Demo</a>
+      
+        <a href="contact.html" >Contact</a>
+      
+      </nav>
+    </div>
+  </header>
+  <main id="main-content">
+  
+<section class="page-hero demo-heading section-glow"><div class="container narrow"><span class="eyebrow">LIVE INTERACTIVE PROTOTYPE</span><h1>See AccessOTP <span class="gradient-text">in action.</span></h1><p>Enter fictional bank login details, then watch AccessOTP simulate automatic OTP verification — no manual code entry.</p><div class="prototype-notice"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg> Demonstration only — no real banking connection or security verification</div></div></section>
+<section class="section section-compact"><div class="container demo-layout">
+  <section class="demo-bank mock-app" aria-labelledby="bank-title">
+    <div class="mock-topbar"><span class="app-brand"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-6 9 6M4 10h16M6 10v8M10 10v8M14 10v8M18 10v8M3 21h18M2 18h20"/></svg> DemoBank</span><span class="demo-label">FICTIONAL</span></div>
+    <div class="mock-body">
+       <div class="bank-emblem"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-6 9 6M4 10h16M6 10v8M10 10v8M14 10v8M18 10v8M3 21h18M2 18h20"/></svg></div>
+       <h2 id="bank-title">Welcome back</h2>
+       <p>Sign in using the sample credentials. The automatic OTP stage starts after the password check.</p>
+       <div class="bank-account"><span><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span> Demo customer <small>Fictional account · No real data</small></div>
+       <div id="login-area">
+         <div class="demo-credentials" id="demo-credentials">
+           <strong>Sample credentials — use these only</strong>
+           <span>Username: <code>demo</code></span>
+           <span>Password: <code>Demo@1234</code></span>
+         </div>
+         <form id="bank-login-form" class="bank-login-form" autocomplete="off">
+           <label for="demo-username">Username</label>
+           <input id="demo-username" name="demo-username" type="text" autocomplete="off" placeholder="Enter demo username" required maxlength="40" spellcheck="false">
+           <label for="demo-password">Password</label>
+           <input id="demo-password" name="demo-password" type="password" autocomplete="off" placeholder="Enter demo password" required maxlength="40">
+           <p class="login-error" id="login-error" role="alert" hidden></p>
+           <button class="btn btn-primary btn-full" id="start-demo" type="submit">Sign in to DemoBank →</button>
+         </form>
+       </div>
+       <div id="bank-status" class="mock-state" role="status" aria-live="polite">Enter the demo username and password to begin.</div>
+       <div id="bank-dashboard" class="bank-dashboard" hidden>
+         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/><circle cx="12" cy="12" r="10"/></svg>
+         <strong>Welcome to your demo account!</strong>
+         <span>Signed in using a simulated AccessOTP verification. No real banking data is shown.</span>
+       </div>
+       <button class="btn btn-text btn-full" id="reset-demo" type="button">Reset simulation</button>
+    </div>
+  </section>
+  <div class="demo-connector" aria-hidden="true"><span class="connector-line"></span><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><span class="connector-line"></span></div>
+  <section class="demo-access mock-app" aria-labelledby="access-title">
+    <div class="mock-topbar"><span class="app-brand"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg> AccessOTP</span><span class="demo-label">SIMULATED</span></div>
+    <div class="mock-body">
+      <div class="access-emblem"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+      <h2 id="access-title">Verification service</h2>
+      <p>In this simulation, the verification happens automatically after bank sign-in is started.</p>
+      <div class="verification-stage"><span id="verification-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><strong id="access-status">Waiting for a request</strong><small id="access-detail">No verification in progress</small></div>
+      <div class="demo-footnote">No OTP is generated, transmitted, or checked by this web demo.</div>
+    </div>
+  </section>
+</div></section>
+<section class="section alt-section"><div class="container"><div class="section-heading center"><span class="eyebrow">TRANSPARENT SIMULATION</span><h2>Follow each step</h2><p>These are simulated milestones, not messages sent to a real bank.</p></div><ol class="timeline" id="demo-timeline"><li class="timeline-item" data-stage="1"><span>01</span><div><h3>Enter bank credentials</h3><p>Type the fictional DemoBank username and password.</p></div></li><li class="timeline-item" data-stage="2"><span>02</span><div><h3>Demo password check</h3><p>The browser checks the sample credentials locally (not real authentication).</p></div></li><li class="timeline-item" data-stage="3"><span>03</span><div><h3>Verification request</h3><p>DemoBank simulates sending an authorized request to AccessOTP.</p></div></li><li class="timeline-item" data-stage="4"><span>04</span><div><h3>AccessOTP simulates verification</h3><p>AccessOTP returns a simulated approval without manual OTP entry.</p></div></li><li class="timeline-item" data-stage="5"><span>05</span><div><h3>Demo account opens</h3><p>The fictional bank displays its signed-in screen.</p></div></li></ol>
+<div id="demo-live-status" class="demo-live-status" role="status" aria-live="polite" aria-atomic="true">Enter the sample username and password to begin.</div></div></section>
+<section class="section"><div class="container"><div class="demo-explainer"><span class="eyebrow">IMPORTANT NOTE</span><h2>What this demonstration does — and doesn't — do</h2><p>The animation illustrates an envisioned product flow using a fictional banking interface and JavaScript state changes. The username/password check is performed locally in JavaScript with publicly visible, fictional sample values. It does not connect to real banks, verify real credentials, generate real OTPs, or grant access to accounts. A production integration would require bank collaboration and consent-based security controls.</p></div></div></section>
+
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <a class="brand brand-footer" href="index.html"><span class="brand-mark"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span> Access<span class="brand-accent">OTP</span></a>
+        <p>Accessible authentication, thoughtfully reimagined.</p>
+      </div>
+      <div class="footer-nav"><a href="about.html">About</a><a href="features.html">Features</a><a href="demo.html">Demo</a><a href="contact.html">Contact</a></div>
+      <div class="footer-note">Concept prototype · Fictional banking environment<br>© 2026 AccessOTP</div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#091327">
+  <meta name="description" content="Read about the AccessOTP prototype, proposed technical capabilities, intended audience, and accessibility-first product differentiation.">
+  <title>Product features | AccessOTP</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="config.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body class="page-features">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header" id="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="AccessOTP home">
+        <span class="brand-mark" aria-hidden="true"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <span>Access<span class="brand-accent">OTP</span></span>
+      </a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      
+        <a href="index.html" >Home</a>
+      
+        <a href="about.html" >About Us</a>
+      
+        <a href="services.html" >Services</a>
+      
+        <a href="features.html" aria-current="page">Features</a>
+      
+        <a href="demo.html" >Demo</a>
+      
+        <a href="contact.html" >Contact</a>
+      
+      </nav>
+    </div>
+  </header>
+  <main id="main-content">
+  
+<section class="page-hero section-glow"><div class="container narrow"><span class="eyebrow">PRODUCT FEATURES</span><h1>Thoughtful by design.<br><span class="gradient-text">Accessible by intention.</span></h1><p>See what makes the AccessOTP concept different and how the working demo illustrates its core journey.</p></div></section>
+<section class="section section-compact"><div class="container"><div class="section-heading center"><span class="eyebrow">PROTOTYPE CAPABILITIES</span><h2>Features built around the user</h2><p>The demo currently simulates verification; these concepts describe the intended product direction, not a deployed banking security system.</p></div><div class="cards two"><article class="card roomy"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 9-9L22 5.4l-2.3 2.3 1.2 1.2-3 3-1.2-1.2-3.8 3.8"/></svg></div><h3>No manual OTP input</h3><p>The simulated bank completes verification without displaying an SMS code or asking the user to type one.</p><span class="micro-tag">Demonstrated in prototype</span></article><article class="card roomy"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l3-3A5 5 0 0 0 13 2.9l-1.7 1.7M14 11a5 5 0 0 0-7.1 0l-3 3A5 5 0 1 0 11 21.1l1.7-1.7"/></svg></div><h3>Bank-authorized workflow</h3><p>Designed around a future formal integration between a participating bank and AccessOTP, rather than bypassing app security.</p><span class="micro-tag">Future integration requirement</span></article><article class="card roomy"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M4 8h16M12 6v15M7 21l5-7 5 7"/></svg></div><h3>Accessible interaction patterns</h3><p>Clear wording, labeled controls, keyboard navigation, and screen-reader status updates in the web demonstration.</p><span class="micro-tag">Implemented in website demo</span></article><article class="card roomy"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Security-conscious concept</h3><p>A real product would require user consent, bank-side authorization, authenticated communication, logging, and independent security testing.</p><span class="micro-tag">Design principle</span></article></div></div></section>
+<section class="section alt-section"><div class="container cards three"><article class="card info-card"><span class="eyebrow">TECHNICAL APPROACH</span><h3>How it is modeled</h3><p>A front-end prototype illustrates a request → verification → response journey. No live bank API, SMS interception, or real account authentication is present.</p></article><article class="card info-card"><span class="eyebrow">TARGET AUDIENCE</span><h3>Who it's for</h3><p>People who are blind or have low vision, particularly those who find conventional OTP flows cumbersome or inaccessible.</p></article><article class="card info-card"><span class="eyebrow">DIFFERENTIATION</span><h3>What we prioritize</h3><p>Accessibility at the center of the verification journey rather than treating assistive access as an afterthought. This is our product positioning, not a validated market comparison.</p></article></div></section>
+<section class="section"><div class="container"><div class="cta-banner"><div><span class="eyebrow">INTERACTIVE EXPERIENCE</span><h2>See the idea working — without a real bank.</h2><p>Run the simulated sign-in sequence in your browser.</p></div><a href="demo.html" class="btn btn-primary">Explore prototype <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div></div></section>
+
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <a class="brand brand-footer" href="index.html"><span class="brand-mark"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span> Access<span class="brand-accent">OTP</span></a>
+        <p>Accessible authentication, thoughtfully reimagined.</p>
+      </div>
+      <div class="footer-nav"><a href="about.html">About</a><a href="features.html">Features</a><a href="demo.html">Demo</a><a href="contact.html">Contact</a></div>
+      <div class="footer-note">Concept prototype · Fictional banking environment<br>© 2026 AccessOTP</div>
+    </div>
+  </footer>
+</body>
+</html>
