@@ -1,10 +1,9 @@
 /* AccessOTP public site settings. Never put bank credentials or secrets here. */
 window.ACCESSOTP_CONFIG = {
-  // Set this to your LIVE domain email when it has been activated and tested.
-  businessEmail: "",
 
-  // Set this to your real Formspree endpoint only after testing message delivery.
-  formspreeEndpoint: "",
+businessEmail: "info@accessotp.site",
+formspreeEndpoint: "https://formspree.io/f/xgaklgqw",
+
 
   // The third team member is intentionally omitted until their details are ready.
   // Roles are generic until the team confirms individual responsibilities.
