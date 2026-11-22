@@ -21,3 +21,37 @@
 .bank-dashboard .icon{width:40px;height:40px;color:#82ebd5}
 .bank-dashboard strong{font-size:1.12rem;color:#e8fff8}
 .bank-dashboard span{font-size:.89rem;line-height:1.6}
+
+/* AccessOTP trusted-device demo — UI simulation, not real device enrollment */
+.trusted-device-card {
+  padding: 18px; margin: 18px 0; text-align: left;
+  background: linear-gradient(145deg,#132b39,#15263f);
+  border: 1px solid #44757a; border-radius: 16px;
+}
+.trusted-device-top { display: flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.trusted-device-icon { font-size: 1.35rem; flex: 0 0 auto; }
+.trusted-device-heading { flex: 1 1 115px; min-width: 0; }
+.trusted-device-heading strong { display:block; font-size:.98rem; }
+.trusted-device-heading small { display:block; color:#bacce1; font-size:.74rem; }
+.device-trust-badge { display:inline-flex; align-items:center; justify-content:center; font-weight:800;
+  font-size:.74rem; color:#ffd5da; background:#522a39; border:1px solid #a66b7c;
+  padding:5px 11px; border-radius:99px; white-space:nowrap; }
+.device-trust-badge.is-trusted { color:#a3f5db; background:#103e35; border-color:#399e87; }
+.trusted-device-card p { color:#c4d3e5; font-size:.85rem; line-height:1.55; margin:13px 0; }
+.trusted-device-button { width:100%; min-height:44px; padding:10px 12px; font-size:.85rem; text-align:center; }
+.device-trust-note { display:block; color:#b2c5d7; margin-top:11px; font-size:.75rem; line-height:1.55; }
+.access-device-pill { margin:21px 0 0; padding:10px 12px; font-size:.84rem; line-height:1.5;
+  background:#3e2939; color:#ffced3; border:1px solid #9b647a; border-radius:11px; font-weight:750; }
+.access-device-pill.is-trusted { background:#123b36; color:#a3f5db; border-color:#3a857d; }
+/* On narrow screens, rotate only the arrow, never the wide flex container.
+   This fixes the long vertical line over the DemoBank and AccessOTP cards. */
+@media (max-width:780px) {
+  .page-demo .demo-connector { transform:none; height:56px; min-height:56px; width:100%;
+    display:flex; align-items:center; justify-content:center; gap:0; overflow:hidden; }
+  .page-demo .demo-connector .connector-line { display:none; }
+  .page-demo .demo-connector svg.icon { width:28px; height:28px; transform:rotate(90deg); }
+}
+@media (max-width:540px) {
+  .trusted-device-card { padding:15px 13px; }
+  .device-trust-badge { padding:5px 9px; font-size:.7rem; }
+}

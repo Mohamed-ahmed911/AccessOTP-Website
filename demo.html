@@ -41,7 +41,7 @@
   </header>
   <main id="main-content">
   
-<section class="page-hero demo-heading section-glow"><div class="container narrow"><span class="eyebrow">LIVE INTERACTIVE PROTOTYPE</span><h1>See AccessOTP <span class="gradient-text">in action.</span></h1><p>Enter fictional bank login details, then watch AccessOTP simulate automatic OTP verification — no manual code entry.</p><div class="prototype-notice"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg> Demonstration only — no real banking connection or security verification</div></div></section>
+<section class="page-hero demo-heading section-glow"><div class="container narrow"><span class="eyebrow">LIVE INTERACTIVE PROTOTYPE</span><h1>See AccessOTP <span class="gradient-text">in action.</span></h1><p>Enter fictional bank credentials and simulate a registered trusted device, then see automatic OTP verification — no manual code entry.</p><div class="prototype-notice"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg> Demonstration only — no real banking connection or security verification</div></div></section>
 <section class="section section-compact"><div class="container demo-layout">
   <section class="demo-bank mock-app" aria-labelledby="bank-title">
     <div class="mock-topbar"><span class="app-brand"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-6 9 6M4 10h16M6 10v8M10 10v8M14 10v8M18 10v8M3 21h18M2 18h20"/></svg> DemoBank</span><span class="demo-label">FICTIONAL</span></div>
@@ -56,6 +56,19 @@
            <span>Username: <code>demo</code></span>
            <span>Password: <code>Demo@1234</code></span>
          </div>
+         <section class="trusted-device-card" aria-labelledby="trusted-device-title">
+           <div class="trusted-device-top">
+             <span class="trusted-device-icon" aria-hidden="true">🛡️</span>
+             <div class="trusted-device-heading">
+               <strong id="trusted-device-title">Trusted device</strong>
+               <small>Required for automatic verification</small>
+             </div>
+             <span class="device-trust-badge" id="device-trust-badge" role="status" aria-live="polite">Not trusted</span>
+           </div>
+           <p id="device-trust-description">This fictional device is not registered with DemoBank yet.</p>
+           <button type="button" id="trust-device-btn" class="btn btn-outline trusted-device-button">Simulate device registration</button>
+           <small class="device-trust-note">Demo only: real device enrollment must be authorized and securely verified by the bank.</small>
+         </section>
          <form id="bank-login-form" class="bank-login-form" autocomplete="off">
            <label for="demo-username">Username</label>
            <input id="demo-username" name="demo-username" type="text" autocomplete="off" placeholder="Enter demo username" required maxlength="40" spellcheck="false">
@@ -69,7 +82,7 @@
        <div id="bank-dashboard" class="bank-dashboard" hidden>
          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/><circle cx="12" cy="12" r="10"/></svg>
          <strong>Welcome to your demo account!</strong>
-         <span>Signed in using a simulated AccessOTP verification. No real banking data is shown.</span>
+         <span>Signed in after simulated trusted-device and AccessOTP checks. No real banking data is shown.</span>
        </div>
        <button class="btn btn-text btn-full" id="reset-demo" type="button">Reset simulation</button>
     </div>
@@ -80,15 +93,23 @@
     <div class="mock-body">
       <div class="access-emblem"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div>
       <h2 id="access-title">Verification service</h2>
-      <p>In this simulation, the verification happens automatically after bank sign-in is started.</p>
+      <p>In this simulation, automatic verification starts after successful demo sign-in and a trusted-device check.</p>
+      <div class="access-device-pill" id="access-device-pill" role="status" aria-live="polite">◯ Device not registered (demo)</div>
       <div class="verification-stage"><span id="verification-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><strong id="access-status">Waiting for a request</strong><small id="access-detail">No verification in progress</small></div>
       <div class="demo-footnote">No OTP is generated, transmitted, or checked by this web demo.</div>
     </div>
   </section>
 </div></section>
-<section class="section alt-section"><div class="container"><div class="section-heading center"><span class="eyebrow">TRANSPARENT SIMULATION</span><h2>Follow each step</h2><p>These are simulated milestones, not messages sent to a real bank.</p></div><ol class="timeline" id="demo-timeline"><li class="timeline-item" data-stage="1"><span>01</span><div><h3>Enter bank credentials</h3><p>Type the fictional DemoBank username and password.</p></div></li><li class="timeline-item" data-stage="2"><span>02</span><div><h3>Demo password check</h3><p>The browser checks the sample credentials locally (not real authentication).</p></div></li><li class="timeline-item" data-stage="3"><span>03</span><div><h3>Verification request</h3><p>DemoBank simulates sending an authorized request to AccessOTP.</p></div></li><li class="timeline-item" data-stage="4"><span>04</span><div><h3>AccessOTP simulates verification</h3><p>AccessOTP returns a simulated approval without manual OTP entry.</p></div></li><li class="timeline-item" data-stage="5"><span>05</span><div><h3>Demo account opens</h3><p>The fictional bank displays its signed-in screen.</p></div></li></ol>
+<section class="section alt-section"><div class="container"><div class="section-heading center"><span class="eyebrow">TRANSPARENT SIMULATION</span><h2>Follow each step</h2><p>These are simulated milestones, not messages sent to a real bank.</p></div><ol class="timeline" id="demo-timeline">
+  <li class="timeline-item" data-stage="1"><span>01</span><div><h3>Enter bank credentials</h3><p>Type the fictional DemoBank username and password.</p></div></li>
+  <li class="timeline-item" data-stage="2"><span>02</span><div><h3>Demo password check</h3><p>The browser checks public sample credentials locally.</p></div></li>
+  <li class="timeline-item" data-stage="3"><span>03</span><div><h3>Trusted device check</h3><p>Automatic verification is allowed only when device registration has been simulated.</p></div></li>
+  <li class="timeline-item" data-stage="4"><span>04</span><div><h3>Verification request</h3><p>DemoBank simulates sending an authorized request to AccessOTP.</p></div></li>
+  <li class="timeline-item" data-stage="5"><span>05</span><div><h3>AccessOTP automatic verification</h3><p>AccessOTP returns a simulated approval without manual OTP entry.</p></div></li>
+  <li class="timeline-item" data-stage="6"><span>06</span><div><h3>Demo account opens</h3><p>The fictional bank displays its signed-in screen.</p></div></li>
+</ol>
 <div id="demo-live-status" class="demo-live-status" role="status" aria-live="polite" aria-atomic="true">Enter the sample username and password to begin.</div></div></section>
-<section class="section"><div class="container"><div class="demo-explainer"><span class="eyebrow">IMPORTANT NOTE</span><h2>What this demonstration does — and doesn't — do</h2><p>The animation illustrates an envisioned product flow using a fictional banking interface and JavaScript state changes. The username/password check is performed locally in JavaScript with publicly visible, fictional sample values. It does not connect to real banks, verify real credentials, generate real OTPs, or grant access to accounts. A production integration would require bank collaboration and consent-based security controls.</p></div></div></section>
+<section class="section"><div class="container"><div class="demo-explainer"><span class="eyebrow">IMPORTANT NOTE</span><h2>What this demonstration does — and doesn't — do</h2><p>The animation illustrates an envisioned product flow using a fictional banking interface and JavaScript state changes. The username/password and trusted-device checks are simulated in client-side JavaScript, with publicly visible fictional values. Clicking device registration does not validate a real device. This demo does not connect to banks, verify real identities, generate real OTPs, or grant access to accounts. A production integration requires bank-approved device enrollment, device binding, explicit user authorization, and security controls.</p></div></div></section>
 
   </main>
   <footer class="site-footer">
