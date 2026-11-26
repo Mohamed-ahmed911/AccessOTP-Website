@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#091327">
   <meta name="description" content="AccessOTP is an accessibility-first banking authentication concept. Explore a simulated, bank-authorized OTP flow designed for visually impaired users.">
-  <title>Accessible banking without manual OTP entry | AccessOTP</title>
+  <title>AccessOTP Android prototype | Accessible automatic OTP authentication</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
   <script defer src="config.js"></script>
@@ -44,22 +44,22 @@
 <section class="hero-section section-glow">
   <div class="container hero-grid">
     <div class="hero-content">
-      <span class="eyebrow"><span class="eyebrow-dot"></span> ACCESSIBILITY-FIRST BANKING AUTHENTICATION</span>
-      <h1>Banking access.<br><span class="gradient-text">Without manual OTP entry.</span></h1>
-      <p class="lead">AccessOTP is a <strong>two-app Android proof of concept</strong>. After a demo username and four-digit PIN, its companion Authenticator handles an OTP request automatically on the same device — without manually entering the one-time code.</p>
+      <span class="eyebrow"><span class="eyebrow-dot"></span> ACCESSOTP · TWO ANDROID APPS · ONE DEVICE</span>
+      <h1>Meet AccessOTP.<br><span class="gradient-text">Android authentication, made accessible.</span></h1>
+      <p class="lead">The <strong>Android Demo Bank</strong> and <strong>AccessOTP Authenticator</strong> work together on one device. Enter a username and a four-digit PIN; the companion app processes a protected verification request automatically. No manual OTP entry.</p>
       <div class="button-group"><a class="btn btn-primary" href="demo.html">Try the interactive demo <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a><a class="btn btn-outline" href="features.html">Explore the concept</a></div>
       <div class="hero-disclaimer"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg> Proof-of-concept · No real bank connection</div>
     </div>
     <div class="hero-visual" aria-label="Illustration of a fictional bank securely requesting a verification result from AccessOTP">
       <div class="visual-orb"></div>
       <div class="app-window bank-window">
-        <div class="window-title"><span class="window-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-6 9 6M4 10h16M6 10v8M10 10v8M14 10v8M18 10v8M3 21h18M2 18h20"/></svg></span> <span>DemoBank <small>FICTIONAL BANK</small></span><span class="window-dots">•••</span></div>
+        <div class="window-title"><span class="window-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-6 9 6M4 10h16M6 10v8M10 10v8M14 10v8M18 10v8M3 21h18M2 18h20"/></svg></span> <span>Demo Bank <small>ANDROID PROTOTYPE</small></span><span class="window-dots">•••</span></div>
         <div class="mini-label">SECURE SIGN-IN</div>
-        <div class="mini-user"><span class="round-avatar"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span>Welcome back<small>Verification in progress</small></span></div>
-        <div class="mini-pulse"><span class="pulse-ring"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l3-3A5 5 0 0 0 13 2.9l-1.7 1.7M14 11a5 5 0 0 0-7.1 0l-3 3A5 5 0 1 0 11 21.1l1.7-1.7"/></svg></span><span>Verification request sent to AccessOTP<small>No SMS or code entry needed</small></span></div>
-        <div class="mini-success"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg> Verification complete</div>
+        <div class="mini-user"><span class="round-avatar"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span>Username + 4-digit PIN<small>Companion app verification</small></span></div>
+        <div class="mini-pulse"><span class="pulse-ring"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l3-3A5 5 0 0 0 13 2.9l-1.7 1.7M14 11a5 5 0 0 0-7.1 0l-3 3A5 5 0 1 0 11 21.1l1.7-1.7"/></svg></span><span>Authenticator request initiated<small>Same Android device · no SMS</small></span></div>
+        <div class="mini-success"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg> Verification completed</div>
       </div>
-      <div class="floating-token"><span class="floating-token-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span><span><b>AccessOTP</b><small>Simulated authorization</small></span><span class="check-pill"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></span></div>
+      <div class="floating-token"><span class="floating-token-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span><span><b>AccessOTP</b><small>Companion Authenticator</small></span><span class="check-pill"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></span></div>
     </div>
   </div>
 </section>
@@ -85,11 +85,11 @@
 </section>
 <section class="section">
   <div class="container">
-    <div class="section-heading center"><span class="eyebrow">BUILT AROUND PEOPLE</span><h2>Why we're building AccessOTP</h2><p>An Android prototype focused on reducing manual OTP interactions.</p></div>
+    <div class="section-heading center"><span class="eyebrow">IMPLEMENTED ANDROID FEATURES</span><h2>More than automatic verification</h2><p>Explore the app features shown in our Android prototype and the browser simulation.</p></div>
     <div class="cards three">
-      <article class="card card-feature"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M4 8h16M12 6v15M7 21l5-7 5 7"/></svg></div><h3>Accessibility from day one</h3><p>Considering screen readers, clear language, keyboard access, and accessible confirmation patterns.</p></article>
-      <article class="card card-feature"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Companion-app protection</h3><p>The Android proof of concept uses signature-protected app communication; a real bank would require its own approval and security review.</p></article>
-      <article class="card card-feature"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2ZM19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8L19 17Z"/></svg></div><h3>Less friction</h3><p>Demonstrating an authentication journey that doesn't require typing a one-time code.</p></article>
+      <article class="card card-feature"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M4 8h16M12 6v15M7 21l5-7 5 7"/></svg></div><h3>Count & Morse vibration</h3><p>Choose Count, Morse or Off for tactile feedback when entering the four-digit PIN in the Android bank app.</p></article>
+      <article class="card card-feature"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Protected companion verification</h3><p>The Android proof of concept uses signature-protected communication and the Android Keystore to protect the request exchange.</p></article>
+      <article class="card card-feature"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2ZM19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8L19 17Z"/></svg></div><h3>Private PIN & demo banking</h3><p>Hide PIN keypad digits, then explore a fictional balance, simulated transfers and transaction history after sign-in.</p></article>
     </div>
   </div>
 </section>
