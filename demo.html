@@ -88,7 +88,7 @@
 <div class="cards three">
 <article class="card"><h3>Vibration settings</h3><p>Choose Count, Morse or Off. Count mode represents zero with two groups of five pulses. Browser vibration depends on device support.</p></article>
 <article class="card"><h3>Private PIN keypad</h3><p>Hide numeric key labels, select a keypad position and confirm the selected digit. The Android version provides haptic feedback.</p></article>
-<article class="card"><h3>Demo banking</h3><p>View or hide a fictional BHD balance, add demo funds, transfer to another demo account, review recent transactions and sign out.</p></article>
+<article class="card"><h3>Demo banking &amp; Feel balance</h3><p>The fictional BHD balance is hidden by default. Reveal it or try Count/Morse haptic feedback with a tick between digits and a long pulse for the decimal point. Add demo funds, transfer, review transactions, or sign out. Browser haptics depend on the device.</p></article>
 </div>
 </div></section>
 <section class="section"><div class="container"><div class="demo-explainer"><span class="eyebrow">HONEST PROTOTYPE BOUNDARY</span><h2>What is actually protected?</h2><p><strong>Android implementation:</strong> The apps communicate using a signature-protected service. The bank creates a random OTP and fresh challenge, encrypts the payload to the Authenticator's Android Keystore RSA key, and checks the returned HMAC-SHA256 proof. The Authenticator checks the challenge age and recent in-memory nonce reuse. <strong>Browser simulation:</strong> shows these steps visually only, without implementing bank security. This is not a real bank service, full trusted-device enrollment, hardware attestation or a server-side second factor.</p></div></div></section>

@@ -18,7 +18,7 @@
     ['sara',  {pin:null, balance:85000, history:[]}]
   ]);
   let screen='welcome', returnTo='welcome', user='', pin='', privatePin=false;
-  let selectedDigit=null, vibration='Count', authVibration='Count', loggedIn=false, showBalance=true;
+  let selectedDigit=null, vibration='Count', authVibration='Count', loggedIn=false, showBalance=false;
   let recipient='', pendingMoney=0, pendingType='', timer=null;
   let authenticatorLast='No requests yet';
 
@@ -43,7 +43,7 @@
   const go = (next,notice='') => { screen=next;render();message(notice); };
   const cancelTimer = () => { if(timer!==null){clearTimeout(timer);timer=null;} };
   const reset = () => {
-    cancelTimer(); user='';pin='';selectedDigit=null;loggedIn=false;recipient='';pendingMoney=0;pendingType='';
+    cancelTimer(); user='';pin='';selectedDigit=null;loggedIn=false;showBalance=false;recipient='';pendingMoney=0;pendingType='';
     setStage(null,'Start by selecting Sign in on the bank welcome screen.');
     go('welcome');
   };
@@ -63,6 +63,36 @@
       for(let i=0;i<count;i++){pattern.push(130);if(i<count-1)pattern.push(i===4?360:150);}
     }
     navigator.vibrate(pattern);
+  }
+  // Browser haptic preview of the Android bank's new Feel balance action.
+  // Pattern timings mirror the Count/Morse scheme in the revised Common.kt.
+  function feelBalance(mode) {
+    const fils=accounts.get(user)?.balance ?? 0;
+    const amount=(fils / 1000).toFixed(3);
+    const buzz=[];
+    const addPulse=(on, gap)=>{if(buzz.length)buzz.push(gap);buzz.push(on);};
+    const morse=['-----','.----','..---','...--','....-','.....','-....','--...','---..','----.'];
+    for(let i=0;i<amount.length;i++){
+      const ch=amount[i];let gap=i===0?0:650;
+      if(i>0 && ch!=='.' && amount[i-1]!=='.'){
+        addPulse(65,gap);gap=650; // brief separator tick between digits
+      }
+      if(ch==='.'){
+        addPulse(520,gap); // long pulse for decimal point
+      }else if(mode==='Morse'){
+        for(const [j,sym] of [...morse[Number(ch)]].entries()){
+          addPulse(sym==='.'?75:225,j===0?gap:90);
+        }
+      }else{
+        const count=ch==='0'?10:Number(ch);
+        for(let j=0;j<count;j++)addPulse(130,j===0?gap:(j===5?360:150));
+      }
+    }
+    if(typeof navigator.vibrate !== 'function' || navigator.vibrate(buzz)!==true){
+      message(`Feel balance: ${mode} haptic preview is unavailable in this browser. The Android app provides the vibration pattern on a supported device.`);
+      return;
+    }
+    message(`Feel balance: ${mode} preview requested. Check the phone's vibration; some browsers do not support haptics.`);
   }
   function panel(title,subtitle,content){return `<div class="match-content"><h2>${title}</h2><p class="match-subtitle">${subtitle}</p>${content}</div>`;}
   function render() {
@@ -99,7 +129,10 @@
     } else if(screen==='dashboard'){
       const balance = accounts.get(user)?.balance ?? 0;
       content=panel('AccessOTP','Demo banking · Signed in as '+esc(user),
-      `<div class="match-balance"><small>Available balance</small><strong>${showBalance?formatMoney(balance):'Hidden'}</strong>${button(showBalance?'Hide balance':'Show balance','balance-toggle')}</div><div class="match-actions">${button('Send money','transfer-select','btn-primary')}${button('Add money','topup')}${button('Transactions','transactions')}${button('Vibration','settings')}${button('Sign out','signout')}</div><p class="match-muted">All balances and transactions are local fictional demo data. Nothing is transferred to a bank.</p>`);
+      `<div class="match-detail"><strong>✓ OTP verified (simulation)</strong></div><div class="match-balance"><small>Available balance</small><strong>${showBalance?formatMoney(balance):'Hidden'}</strong>${button(showBalance?'Hide balance':'Show balance','balance-toggle')}</div><div class="match-actions">${button('Feel balance','feel-balance')}${button('Add money','topup')}${button('Send money','transfer-select','btn-primary')}${button('Transactions','transactions')}${button('Vibration','settings')}${button('Sign out','signout')}</div><p class="match-hint">Feel balance uses Count or Morse patterns. A short tick separates digits and a longer pulse marks the decimal point. On browsers without vibration, this is a visual-only demonstration.</p><p class="match-muted">All balances and transactions are local fictional demo data. Nothing is transferred to a bank.</p>`);
+    } else if(screen==='balance-mode'){
+      content=panel('Choose balance vibration','Android offers Count or Morse when vibration is set to Off.',
+        `${button('Count vibration','feel-count','btn-primary')}${button('Morse vibration','feel-morse')}${button('Back','dashboard')}`);
     } else if(screen==='transactions'){
       const entries=accounts.get(user).history;
       content=panel('Transactions','Most recent first.',`${entries.length?`<ul class="match-transaction-list">${[...entries].reverse().map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'<div class="match-detail">No transactions yet.</div>'}${button('Back','dashboard')}`);
@@ -135,7 +168,7 @@
       timer=setTimeout(()=>{
         if(screen!=='verifying')return;
         authenticatorLast='Verified (browser simulation)'; updateAuthenticator();
-        loggedIn=true;showBalance=true;
+        loggedIn=true;showBalance=false;
         setStage('success','Bank checks the returned proof and opens the demo account.');
         go('dashboard','Automatic verification complete in this browser simulation.');
         timer=null;
@@ -200,6 +233,8 @@
       case 'preview-zero':vibrateDigit(0);break;
       case 'reset':reset();break;
       case 'balance-toggle':showBalance=!showBalance;render();break;
+      case 'feel-balance':if(vibration==='Off'){go('balance-mode');}else{feelBalance(vibration);}break;
+      case 'feel-count':case 'feel-morse':{const mode=action==='feel-count'?'Count':'Morse';go('dashboard');feelBalance(mode);break;}
       case 'confirm-money':{
         const account=accounts.get(user);
         if(pendingType==='topup'){
