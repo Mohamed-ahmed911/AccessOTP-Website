@@ -1,61 +1,70 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#091327">
-  <meta name="description" content="Read about the AccessOTP prototype, proposed technical capabilities, intended audience, and accessibility-first product differentiation.">
-  <title>Product features | AccessOTP</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css">
-  <script defer src="config.js"></script>
-  <script defer src="app.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#091327" name="theme-color"/>
+<meta content="Features implemented in the Android Studio AccessOTP apps: four-digit PIN, background automatic OTP, vibration feedback, private keypad, banking demo and companion authenticator." name="description"/>
+<title>Product features | AccessOTP</title>
+<link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="style.css" rel="stylesheet"/>
+<script defer="" src="config.js"></script>
+<script defer="" src="app.js"></script>
 </head>
 <body class="page-features">
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-  <header class="site-header" id="site-header">
-    <div class="container nav-inner">
-      <a class="brand" href="index.html" aria-label="AccessOTP home">
-        <span class="brand-mark" aria-hidden="true"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span>
-        <span>Access<span class="brand-accent">OTP</span></span>
-      </a>
-      <button type="button" class="menu-toggle" id="menu-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation menu">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
-      
-        <a href="index.html" >Home</a>
-      
-        <a href="about.html" >About Us</a>
-      
-        <a href="services.html" >Services</a>
-      
-        <a href="features.html" aria-current="page">Features</a>
-      
-        <a href="demo.html" >Demo</a>
-      
-        <a href="contact.html" >Contact</a>
-      
-      </nav>
-    </div>
-  </header>
-  <main id="main-content">
-  
-<section class="page-hero section-glow"><div class="container narrow"><span class="eyebrow">PRODUCT FEATURES</span><h1>Thoughtful by design.<br><span class="gradient-text">Accessible by intention.</span></h1><p>See what makes the AccessOTP concept different and how the working demo illustrates its core journey.</p></div></section>
-<section class="section section-compact"><div class="container"><div class="section-heading center"><span class="eyebrow">PROTOTYPE CAPABILITIES</span><h2>Features built around the user</h2><p>The demo currently simulates verification; these concepts describe the intended product direction, not a deployed banking security system.</p></div><div class="cards two"><article class="card roomy"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 9-9L22 5.4l-2.3 2.3 1.2 1.2-3 3-1.2-1.2-3.8 3.8"/></svg></div><h3>No manual OTP input</h3><p>The simulated bank completes verification without displaying an SMS code or asking the user to type one.</p><span class="micro-tag">Demonstrated in prototype</span></article><article class="card roomy"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.1 0l3-3A5 5 0 0 0 13 2.9l-1.7 1.7M14 11a5 5 0 0 0-7.1 0l-3 3A5 5 0 1 0 11 21.1l1.7-1.7"/></svg></div><h3>Bank-authorized workflow</h3><p>Designed around a future formal integration between a participating bank and AccessOTP, rather than bypassing app security.</p><span class="micro-tag">Future integration requirement</span></article><article class="card roomy"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="2"/><path d="M4 8h16M12 6v15M7 21l5-7 5 7"/></svg></div><h3>Accessible interaction patterns</h3><p>Clear wording, labeled controls, keyboard navigation, and screen-reader status updates in the web demonstration.</p><span class="micro-tag">Implemented in website demo</span></article><article class="card roomy"><div class="card-icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Security-conscious concept</h3><p>A real product would require user consent, bank-side authorization, authenticated communication, logging, and independent security testing.</p><span class="micro-tag">Design principle</span></article></div></div></section>
-<section class="section alt-section"><div class="container cards three"><article class="card info-card"><span class="eyebrow">TECHNICAL APPROACH</span><h3>How it is modeled</h3><p>A front-end prototype illustrates a request → verification → response journey. No live bank API, SMS interception, or real account authentication is present.</p></article><article class="card info-card"><span class="eyebrow">TARGET AUDIENCE</span><h3>Who it's for</h3><p>People who are blind or have low vision, particularly those who find conventional OTP flows cumbersome or inaccessible.</p></article><article class="card info-card"><span class="eyebrow">DIFFERENTIATION</span><h3>What we prioritize</h3><p>Accessibility at the center of the verification journey rather than treating assistive access as an afterthought. This is our product positioning, not a validated market comparison.</p></article></div></section>
-<section class="section"><div class="container"><div class="cta-banner"><div><span class="eyebrow">INTERACTIVE EXPERIENCE</span><h2>See the idea working — without a real bank.</h2><p>Run the simulated sign-in sequence in your browser.</p></div><a href="demo.html" class="btn btn-primary">Explore prototype <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></div></div></section>
-
-  </main>
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div>
-        <a class="brand brand-footer" href="index.html"><span class="brand-mark"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span> Access<span class="brand-accent">OTP</span></a>
-        <p>Accessible authentication, thoughtfully reimagined.</p>
-      </div>
-      <div class="footer-nav"><a href="about.html">About</a><a href="features.html">Features</a><a href="demo.html">Demo</a><a href="contact.html">Contact</a></div>
-      <div class="footer-note">Concept prototype · Fictional banking environment<br>© 2026 AccessOTP</div>
-    </div>
-  </footer>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header" id="site-header">
+<div class="container nav-inner">
+<a aria-label="AccessOTP home" class="brand" href="index.html">
+<span aria-hidden="true" class="brand-mark"><svg aria-hidden="true" class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+<span>Access<span class="brand-accent">OTP</span></span>
+</a>
+<button aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation menu" class="menu-toggle" id="menu-toggle" type="button">
+<span></span><span></span><span></span>
+</button>
+<nav aria-label="Main navigation" class="site-nav" id="site-nav">
+<a href="index.html">Home</a>
+<a href="about.html">About Us</a>
+<a href="services.html">Services</a>
+<a aria-current="page" href="features.html">Features</a>
+<a href="demo.html">Demo</a>
+<a href="contact.html">Contact</a>
+</nav>
+</div>
+</header>
+<main id="main-content">
+<section class="page-hero section-glow"><div class="container narrow"><span class="eyebrow">IMPLEMENTED ANDROID FEATURES</span><h1>Designed to reduce<br/><span class="gradient-text">manual OTP steps.</span></h1><p>Features below are based on the supplied Android Studio source for the Demo Bank and AccessOTP Authenticator applications.</p></div></section>
+<section class="section section-compact"><div class="container"><div class="section-heading center"><span class="eyebrow">CORE AUTHENTICATION</span><h2>What the prototype actually does</h2></div><div class="cards two">
+<article class="card roomy"><h3>Username + four-digit PIN</h3><p>The bank app asks for a demo username first, then a four-digit PIN on a numbered or hidden keypad. The default sample account is <code>ahmed</code> with PIN <code>1234</code>.</p><span class="micro-tag">Implemented in Android</span></article>
+<article class="card roomy"><h3>Automatic OTP handling</h3><p>After a correct PIN, the bank app generates a one-time code and sends a protected request to the Authenticator installed on the same device. The user does not read or type the OTP.</p><span class="micro-tag">Implemented in Android</span></article>
+<article class="card roomy"><h3>Same-device companion app</h3><p>The Authenticator must be installed with the bank demo and signed with the matching signing key. If the bank cannot connect, authentication fails. No independent trusted-device registration screen is implemented.</p><span class="micro-tag">Implemented in Android</span></article>
+<article class="card roomy"><h3>Protected inter-app verification</h3><p>The Android source uses signature-permission IPC, an Android Keystore RSA key, encrypted challenge data, HMAC-SHA256 proof, a 30-second freshness limit and in-memory replay checking.</p><span class="micro-tag">Prototype security controls</span></article>
+</div></div></section>
+<section class="section alt-section"><div class="container"><div class="section-heading center"><span class="eyebrow">ACCESSIBILITY AND DEMO BANKING</span><h2>Everyday interactions included</h2></div><div class="cards three">
+<article class="card"><h3>Count / Morse / Off</h3><p>Optional vibration feedback for PIN digits, including a two-groups-of-five pattern for zero in Count mode.</p></article>
+<article class="card"><h3>Private PIN keypad</h3><p>Numbers can be hidden. Users select a digit by its keypad position and confirm it after vibration feedback.</p></article>
+<article class="card"><h3>Balance privacy</h3><p>Show or hide the demo account balance, with accessibility announcements when it changes.</p></article>
+<article class="card"><h3>Demo transactions</h3><p>Send demo money, top up a fictional account and view transactions with the most recent entries first.</p></article>
+<article class="card"><h3>Authenticator activity</h3><p>The companion app shows its latest verification result and includes Status, Vibration, Activity and Help screens.</p></article>
+<article class="card"><h3>Create demo account</h3><p>Create a temporary account and choose a sample four-digit PIN. These sample details are not connected to actual financial accounts.</p></article>
+</div></div></section>
+<section class="section"><div class="container cards three">
+<article class="card info-card"><span class="eyebrow">PLATFORM</span><h3>Android Studio</h3><p>Two Kotlin Android apps operating on the same device. Android 8+ (API 26) is the stated minimum.</p></article>
+<article class="card info-card"><span class="eyebrow">TARGET USERS</span><h3>Visually impaired users</h3><p>Reduce steps requiring an OTP to be read, spoken aloud, remembered or manually entered.</p></article>
+<article class="card info-card"><span class="eyebrow">CURRENT LIMITS</span><h3>Proof of concept</h3><p>No real-bank connection, full device enrollment or production server-side MFA. Physical-device and assistive-technology testing are still needed.</p></article>
+</div></section>
+<section class="section"><div class="container"><div class="cta-banner"><div><span class="eyebrow">TRY THE WORKFLOW</span><h2>Explore the Android flow in your browser</h2><p>A clearly labeled simulation of the actual app interactions.</p></div><a class="btn btn-primary" href="demo.html">Open interactive demo</a></div></div></section>
+</main>
+<footer class="site-footer">
+<div class="container footer-inner">
+<div>
+<a class="brand brand-footer" href="index.html"><span class="brand-mark"><svg aria-hidden="true" class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="m9 12 2 2 4-4"></path></svg></span> Access<span class="brand-accent">OTP</span></a>
+<p>Accessible authentication, thoughtfully reimagined.</p>
+</div>
+<div class="footer-nav"><a href="about.html">About</a><a href="features.html">Features</a><a href="demo.html">Demo</a><a href="contact.html">Contact</a></div>
+<div class="footer-note">Concept prototype · Fictional banking environment<br/>© 2026 AccessOTP</div>
+</div>
+</footer>
 </body>
 </html>
