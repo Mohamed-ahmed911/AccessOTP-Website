@@ -22,6 +22,63 @@
   let recipient='', pendingMoney=0, pendingType='', timer=null;
   let authenticatorLast='No requests yet';
 
+  // The browser demo mirrors Android's local PIN-attempt UX only. This is not
+  // real authentication protection: browser storage is editable and resettable.
+  const PIN_LIMIT=5;
+  const PIN_LOCKOUT_MS=60_000;
+  const attemptFallback=new Map();
+  const storageKey=(name)=>`accessotp-demo-pin-attempts:${name}`;
+  function readPinAttempts(name) {
+    let saved=attemptFallback.get(name);
+    try {
+      const raw=window.localStorage.getItem(storageKey(name));
+      if(raw) saved=JSON.parse(raw);
+    } catch(e) { /* Storage may be disabled in private browsing. */ }
+    let failures=Number(saved?.failures)||0;
+    let until=Number(saved?.until)||0;
+    if(!Number.isFinite(until)||!Number.isFinite(failures)||failures<0) {
+      failures=0;until=0;
+    }
+    if(until>0 && until<=Date.now()) {
+      clearPinAttempts(name);
+      return {failures:0,until:0};
+    }
+    return {failures,until};
+  }
+  function savePinAttempts(name, data) {
+    attemptFallback.set(name,data);
+    try {window.localStorage.setItem(storageKey(name),JSON.stringify(data));}
+    catch(e) { /* The session fallback still supports the demo. */ }
+  }
+  function clearPinAttempts(name) {
+    attemptFallback.delete(name);
+    try {window.localStorage.removeItem(storageKey(name));}
+    catch(e) { /* Ignore blocked storage. */ }
+  }
+  function isPinLocked(name) {
+    return readPinAttempts(name).until>Date.now();
+  }
+  function showPinLockout(name) {
+    if(!isPinLocked(name))return false;
+    user=name;pin='';selectedDigit=null;
+    setStage('pin','Sign-in temporarily locked after five incorrect PIN attempts (browser simulation).');
+    go('locked');
+    return true;
+  }
+  function recordWrongPin(name) {
+    const prev=readPinAttempts(name);
+    const next=prev.failures+1;
+    pin='';selectedDigit=null;
+    if(next>=PIN_LIMIT) {
+      savePinAttempts(name,{failures:0,until:Date.now()+PIN_LOCKOUT_MS});
+      showPinLockout(name);
+      return;
+    }
+    savePinAttempts(name,{failures:next,until:0});
+    render();
+    message(`Incorrect PIN. ${PIN_LIMIT-next} attempt${PIN_LIMIT-next===1?'':'s'} left.`,true);
+  }
+
   const esc = (text) => String(text).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const formatMoney = (fils) => `${(fils/1000).toFixed(3)} BHD`;
   const button = (title,action,kind='btn-outline',additional='') => `<button type="button" class="btn ${kind} match-action" data-action="${action}" ${additional}>${title}</button>`;
@@ -104,7 +161,7 @@
       content=panel('Sign in with AccessOTP','Enter your username to continue. The default demo account is ahmed.',
         `<form id="match-username-form" class="match-form"><label for="match-name">Username</label><input type="text" id="match-name" name="username" maxlength="24" value="${esc(user)}" autocapitalize="off" autocomplete="off" spellcheck="false" required><button class="btn btn-primary" type="submit">Continue to PIN</button></form>${button('Back','welcome')}`);
     } else if(screen==='create'){
-      content=panel('Create account','Create a temporary demo account with a sample PIN. New accounts start with 0.000 BHD.',
+      content=panel('Create account','Create a temporary browser demo account with a sample PIN (resets on refresh). New accounts start with 0.000 BHD.',
         `<form id="match-create-form" class="match-form"><label for="match-new-name">New demo username</label><input type="text" id="match-new-name" maxlength="24" pattern="[a-z0-9_]{3,24}" autocomplete="off" required placeholder="3–24 letters, digits, underscores"><button class="btn btn-primary" type="submit">Choose PIN</button></form>${button('Back','welcome')}`);
     } else if(screen==='pin'||screen==='create-pin'){
       const create = screen==='create-pin';
@@ -112,14 +169,24 @@
       const subtitle = create?'Set a four-digit PIN for the temporary demo account.':'Enter your four-digit demo PIN. AccessOTP will verify the OTP automatically afterward.';
       const positions=['Top left','Top center','Top right','Upper left','Upper center','Upper right','Lower left','Lower center','Lower right','Bottom center'];
       const digits=[1,2,3,4,5,6,7,8,9,0];
+      if(privatePin && vibration==='Off') {
+        content=panel(label,subtitle,`<div class="match-detail" role="alert"><strong>Hidden PIN entry requires vibration.</strong><span>Vibration is Off. Enable Count or Morse to use the hidden PIN keypad.</span></div>${button('Show number keys','toggle-private')}${button('Open vibration settings','settings','btn-primary')}<div class="match-pin-controls">${button('Back',create?'create':'username')}</div>`);
+        bank.innerHTML=content;
+        return;
+      }
       let pad='';digits.slice(0,9).forEach((d,i)=>pad+=`<button type="button" class="match-key" data-digit="${d}" data-position="${positions[i]}" aria-label="${privatePin?positions[i]+' hidden key':String(d)}">${privatePin?'•':d}</button>`);
       const zero=`<button type="button" class="match-key" data-digit="0" data-position="Bottom center" aria-label="${privatePin?'Bottom center hidden key':'0'}">${privatePin?'•':'0'}</button>`;
       const keypad=`<div class="match-keypad">${pad}<button class="match-key match-utility" type="button" data-action="clear">Clear</button>${zero}<button class="match-key match-utility" type="button" data-action="delete">Delete</button></div>`;
-      const hiddenNote=privatePin?`<p class="match-hint">Tap a hidden keypad position to select its digit, then press <strong>Enter selected digit</strong>. Vibration requires browser support; Android provides the full haptic experience.</p>`:'';
+      const hiddenNote=privatePin?`<p class="match-hint">Tap a hidden keypad position to select its digit, then press <strong>Enter selected digit</strong>. Android requires a vibration-capable device and Count or Morse. In desktop browsers this keypad is a visual illustration, not usable tactile feedback.</p>`:'';
       content=panel(label,subtitle,`<div class="match-pin-counter" role="status" aria-live="polite">${pin.length} of 4 digits entered</div>${button(privatePin?'Show number keys':'Hide numbers for private entry','toggle-private')}${hiddenNote}${keypad}${privatePin?button('Enter selected digit','enter-selected','btn-outline','id="match-enter-selected"'):''}<div class="match-pin-controls">${button(create?'Create account':'Sign in',create?'finish-create':'submit-pin','btn-primary')}${button('Back',create?'create':'username')}</div>`);
+    } else if(screen==='locked'){
+      const remaining=Math.max(0,Math.ceil((readPinAttempts(user).until-Date.now())/1000));
+      const wait=remaining===1?'1 second':`${remaining} seconds`;
+      content=panel('Sign-in temporarily locked',`This account had five incorrect PIN attempts. Try again in ${wait}.`,
+        `<div class="match-detail" role="alert"><strong>60-second PIN lockout (simulated)</strong><span>This browser demo remembers the cooldown after a page refresh, but it is not a real security barrier.</span></div>${button('Try again','retry-locked','btn-primary')}${button('Back','locked-back')}`);
     } else if(screen==='settings'){
       content=panel('Vibration settings','Choose how digits feel. In Count mode, zero uses two groups of five pulses.',
-        `<div class="match-segment">${['Count','Morse','Off'].map((m)=>`<button type="button" class="match-option ${vibration===m?'selected':''}" data-mode="${m}" aria-pressed="${vibration===m}">${m}${vibration===m?' ✓':''}</button>`).join('')}</div>${vibration!=='Off'?button('Preview digit 0','preview-zero'):''}<p class="match-hint">Vibration on the website depends on your browser and device. In the Android applications this setting controls real device feedback.</p>${button('Back','return-settings')}`);
+        `<div class="match-segment">${['Count','Morse','Off'].map((m)=>`<button type="button" class="match-option ${vibration===m?'selected':''}" data-mode="${m}" aria-pressed="${vibration===m}">${m}${vibration===m?' ✓':''}</button>`).join('')}</div>${vibration!=='Off'?button('Preview digit 0','preview-zero'):''}<p class="match-hint">Private PIN entry requires Count or Morse, not Off, in Android. Website haptics depend on browser and device support.</p>${button('Back','return-settings')}`);
     } else if(screen==='help'){
       content=panel('Sign-in help','Use the default demo username ahmed and PIN 1234. AccessOTP Authenticator must be installed on the same Android device. It verifies the one-time code automatically.',button('Back','welcome'));
     } else if(screen==='verifying'){
@@ -176,12 +243,13 @@
     },1050);
   }
   function submitPin(isCreate){
+    if(!isCreate && showPinLockout(user))return;
     if(pin.length!==4){message('Enter four digits.');return;}
     if(isCreate){
-      const acct=accounts.get(user); acct.pin=pin;pin='';selectedDigit=null;go('pin','Demo account created. Enter its PIN to sign in.');return;
+      const acct=accounts.get(user); acct.pin=pin;pin='';selectedDigit=null;clearPinAttempts(user);go('pin','Browser demo account created. Enter its PIN to sign in.');return;
     }
-    if(accounts.get(user)?.pin!==pin){pin='';selectedDigit=null;render();message('Incorrect PIN. Please try again.',true);return;}
-    pin='';selectedDigit=null;authenticate();
+    if(accounts.get(user)?.pin!==pin){recordWrongPin(user);return;}
+    clearPinAttempts(user);pin='';selectedDigit=null;authenticate();
   }
   function parseAmount(str){
     const s=String(str).trim();
@@ -194,7 +262,7 @@
     if(event.target.id==='match-username-form'){
       const name=event.target.elements.username.value.trim().toLowerCase();
       if(!accounts.has(name)||!accounts.get(name).pin){message('No demo account has that username.',true);return;}
-      user=name;pin='';setStage('pin','Username accepted in browser simulation. Enter four-digit PIN.');go('pin');
+      user=name;pin='';if(showPinLockout(name))return;setStage('pin','Username accepted in browser simulation. Enter four-digit PIN.');go('pin');
     } else if(event.target.id==='match-create-form'){
       const name=event.target.querySelector('input').value.trim().toLowerCase();
       if(!/^[a-z0-9_]{3,24}$/.test(name)||accounts.has(name)){message('Use a unique 3–24 character username (letters, digits, underscore).',true);return;}
@@ -221,10 +289,12 @@
     switch(action){
       case 'username':user='';setStage('username','Enter the username of a fictional demo account.');go('username');break;
       case 'welcome':case 'create':case 'dashboard':case 'transfer-select':case 'topup':case 'transactions':case 'signout':go(action);break;
-      case 'settings':returnTo=screen;go('settings');break;
-      case 'return-settings':go(returnTo);break;
+      case 'settings':returnTo=screen;if(screen==='pin'||screen==='create-pin'){pin='';selectedDigit=null;}go('settings');break;
+      case 'return-settings':if(returnTo==='pin'&&showPinLockout(user))break;go(returnTo);break;
+      case 'retry-locked':if(!showPinLockout(user)){setStage('pin','PIN lockout ended. Enter your four-digit PIN.');go('pin','You can try signing in again.');}break;
+      case 'locked-back':pin='';go('username');break;
       case 'help':go('help');break;
-      case 'toggle-private':privatePin=!privatePin;selectedDigit=null;render();message(privatePin?'Hidden digits enabled. Select a keypad position, then confirm it.':'Visible number keys enabled.');break;
+      case 'toggle-private':privatePin=!privatePin;pin='';selectedDigit=null;render();message(privatePin?(vibration==='Off'?'Enable Count or Morse in vibration settings before using hidden PIN.':'Hidden digits enabled. Select a keypad position, then confirm it.'):'Visible number keys enabled.',privatePin&&vibration==='Off');break;
       case 'delete':pin=pin.slice(0,-1);selectedDigit=null;render();break;
       case 'clear':pin='';selectedDigit=null;render();break;
       case 'enter-selected':if(selectedDigit!==null&&pin.length<4){pin+=selectedDigit;selectedDigit=null;render();}else message('Choose a hidden key first.');break;

@@ -5,13 +5,13 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="#091327" name="theme-color"/>
-<meta content="Try the AccessOTP Android banking and Authenticator workflow in a browser simulation: username, 4-digit PIN, automatic verification, vibration options and demo banking." name="description"/>
+<meta content="Explore the AccessOTP Android workflow in a browser simulation: username, 4-digit PIN, five-attempt cooldown, hidden PIN vibration requirements, automatic verification and Feel balance." name="description"/>
 <title>Interactive bank authentication demo | AccessOTP</title>
 <link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
 <link href="style.css" rel="stylesheet"/>
 <script defer="" src="config.js"></script>
 <script defer="" src="app.js"></script>
-<script defer="True" src="demo-match.js"></script></head>
+<script defer="True" src="demo-match.js?v=pin-security-20261127"></script></head>
 <body class="page-demo">
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <header class="site-header" id="site-header">
@@ -38,8 +38,8 @@
 <div class="container narrow">
 <span class="eyebrow">ANDROID APPLICATION WORKFLOW · BROWSER SIMULATION</span>
 <h1>The actual app journey.<br/><span class="gradient-text">One step at a time.</span></h1>
-<p>Explore how our two Android applications work together: a username, a four-digit PIN, and automatic OTP verification by the companion Authenticator on the same device.</p>
-<div class="prototype-notice">This browser version visualizes the Android source flow. It does not execute Android Keystore, encrypted inter-app communication, a real OTP, or a banking transaction.</div>
+<p>Explore how our two Android applications work together: a username, a four-digit PIN with a five-attempt lockout, and automatic OTP verification by the companion Authenticator on the same device.</p>
+<div class="prototype-notice">This browser version visualizes the Android source flow. It does not execute Android Keystore, encrypted inter-app communication, a real OTP, or a banking transaction. PIN attempt limits on this page are an interactive illustration, not real authentication security.</div>
 </div>
 </section>
 <section class="section section-compact">
@@ -87,11 +87,11 @@
 <div class="section-heading center"><span class="eyebrow">FEATURES IN THE ANDROID SOURCE</span><h2>More than a sign-in screen</h2><p>The Android prototype includes these additional interactions. Try them in the browser simulation after signing in.</p></div>
 <div class="cards three">
 <article class="card"><h3>Vibration settings</h3><p>Choose Count, Morse or Off. Count mode represents zero with two groups of five pulses. Browser vibration depends on device support.</p></article>
-<article class="card"><h3>Private PIN keypad</h3><p>Hide numeric key labels, select a keypad position and confirm the selected digit. The Android version provides haptic feedback.</p></article>
+<article class="card"><h3>PIN lockout &amp; private entry</h3><p>Five incorrect PIN attempts trigger a 60-second cooldown. Hidden PIN entry requires Count or Morse vibration on Android; it cannot operate with vibration Off.</p></article>
 <article class="card"><h3>Demo banking &amp; Feel balance</h3><p>The fictional BHD balance is hidden by default. Reveal it or try Count/Morse haptic feedback with a tick between digits and a long pulse for the decimal point. Add demo funds, transfer, review transactions, or sign out. Browser haptics depend on the device.</p></article>
 </div>
 </div></section>
-<section class="section"><div class="container"><div class="demo-explainer"><span class="eyebrow">HONEST PROTOTYPE BOUNDARY</span><h2>What is actually protected?</h2><p><strong>Android implementation:</strong> The apps communicate using a signature-protected service. The bank creates a random OTP and fresh challenge, encrypts the payload to the Authenticator's Android Keystore RSA key, and checks the returned HMAC-SHA256 proof. The Authenticator checks the challenge age and recent in-memory nonce reuse. <strong>Browser simulation:</strong> shows these steps visually only, without implementing bank security. This is not a real bank service, full trusted-device enrollment, hardware attestation or a server-side second factor.</p></div></div></section>
+<section class="section"><div class="container"><div class="demo-explainer"><span class="eyebrow">HONEST PROTOTYPE BOUNDARY</span><h2>What is actually protected?</h2><p><strong>Android implementation:</strong> The apps communicate using a signature-protected service. The bank creates a random OTP and fresh challenge, encrypts the payload to the Authenticator's Android Keystore RSA key, and checks the returned HMAC-SHA256 proof. The Authenticator checks a 30-second challenge age and recent in-memory nonce reuse; the demo bank also limits incorrect PIN attempts to five before a 60-second lockout. <strong>Browser simulation:</strong> shows these steps visually only, without implementing bank security. This is not a real bank service, full trusted-device enrollment, hardware attestation or a server-side second factor.</p></div></div></section>
 </main>
 <footer class="site-footer">
 <div class="container footer-inner">
